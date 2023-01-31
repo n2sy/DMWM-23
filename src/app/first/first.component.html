@@ -1,0 +1,12 @@
+<h2>Je suis le composant First</h2>
+
+<h3>Section : {{ annee }} {{ section }} </h3>
+
+<input [(ngModel)]="section" type="text" class="form-control">
+
+<div [hidden]="hd" [style.backgroundColor]="color"> Exemple de property binding</div>
+
+<button (click)="clickHandler()" class="btn btn-success">Click me</button>
+
+
+<app-child (eventToParent)="traitement($event)" [txtColor]="color" [section]="'DMWM'"></app-child>
