@@ -1,0 +1,8 @@
+<div class="row">
+    <div class="col-md-5">
+        <app-liste (msgToCv)="recupererCandidat($event)" [tab]="tabCandidats"></app-liste>
+    </div>
+    <div class="col-md-7">
+        <app-details *ngIf="selectedCand" [selCandidat]="selectedCand"></app-details>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<ol class="list-group">
+    <!-- <app-item> {{tab[0].prenom }} {{ tab[0].nom }} </app-item>
+    <app-item> {{tab[1].prenom }} {{ tab[1].nom }}</app-item>
+    <app-item> {{tab[2].prenom }} {{ tab[2].nom }}</app-item> -->
+    <app-item *ngFor="let cand of tab; let i = index" (msgToListe)="sendCandToCv($event, i)"
+        [oneCandidat]="cand"></app-item>
+    <!-- <app-item (msgToListe)="sendCandToCv($event)" [oneCandidat]="tab[1]"></app-item>
+    <app-item (msgToListe)="sendCandToCv($event)" [oneCandidat]="tab[2]"></app-item> -->
+</ol>

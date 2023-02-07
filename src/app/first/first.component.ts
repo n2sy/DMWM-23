@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Candidat } from '../models/candidat';
 
 @Component({
   selector: 'app-first',
@@ -10,6 +11,7 @@ export class FirstComponent {
   annee = '2eme annee';
   color = 'blue';
   hd = false;
+
 
   clickHandler() {
     alert("j'ai été cliqué !");
