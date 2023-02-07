@@ -1,0 +1,13 @@
+<div class="dmwm">
+    <h3> {{ oneAccount.name }} </h3>
+    <hr>
+    <p>This account is {{ oneAccount.type }} </p>
+    <!-- <button *ngIf="oneAccount.type != 'active' " (click)="changeType('active')" class="btn btn-success">Set to
+        'active'</button> -->
+    <button [disabled]="oneAccount.type == 'active'" (click)="changeType('active')" class="btn btn-success">Set to
+        'active'</button>
+    <button [disabled]="oneAccount.type == 'inactive'" (click)="changeType('inactive')" class="btn btn-danger">Set to
+        'inactive'</button>
+    <button [disabled]="oneAccount.type == 'unknown'" (click)="changeType('unknown')" class="btn btn-warning">Set to
+        'unknown'</button>
+</div>
