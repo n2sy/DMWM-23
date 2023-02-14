@@ -15,9 +15,12 @@ import { ItemAccountComponent } from './accounts/item-account/item-account.compo
 import { AddAccountComponent } from './accounts/add-account/add-account.component';
 import { DirectComponent } from './direct/direct.component';
 import { MsWordComponent } from './ms-word/ms-word.component';
+import { ManageServersComponent } from './manage-servers/manage-servers.component';
+import { CustomDirDirective } from './custom-dir.directive';
+import { ShortPipe } from './short.pipe';
 
 @NgModule({
-  declarations: [AppComponent, FirstComponent, CardComponent, ChildComponent, CvComponent, ListeComponent, DetailsComponent, ItemComponent, HomeAccountsComponent, ItemAccountComponent, AddAccountComponent, DirectComponent, MsWordComponent],
+  declarations: [AppComponent, FirstComponent, CardComponent, ChildComponent, CvComponent, ListeComponent, DetailsComponent, ItemComponent, HomeAccountsComponent, ItemAccountComponent, AddAccountComponent, DirectComponent, MsWordComponent, ManageServersComponent, CustomDirDirective, ShortPipe],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
