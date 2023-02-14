@@ -1,0 +1,19 @@
+<div [ngStyle]="{
+    'backgroundColor' : bg,
+    'color' : txtColor,
+    'fontSize' : size,
+    'fontFamily' : font
+
+}">Cours Angular avec les DMWM</div>
+
+<label for="">Background Color</label>
+<input [(ngModel)]="bg" type="text" class="form-control">
+<label for="">Text Color</label>
+<input [(ngModel)]="txtColor" type="text" class="form-control">
+<label for="">Size</label>
+<input #nassim (keyup)="modifierSize()" type="number" class="form-control">
+
+<label for="">Font</label>
+<select [(ngModel)]="font" class="form-control">
+    <option *ngFor="let font of listFonts" [value]="font">{{font}}</option>
+</select>
