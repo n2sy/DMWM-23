@@ -23,7 +23,7 @@ export class ManageServersComponent {
       name: 'Development Server',
       type: 'large',
       date_d: new Date(2022, 2, 2),
-      statut: 'stable',
+      statut: 'offline',
     },
     {
       name: 'Nidhal Server',
@@ -32,6 +32,7 @@ export class ManageServersComponent {
       statut: 'stable',
     },
   ];
+  selectedStatut = '';
 
   affecterClass(st) {
     return {
@@ -39,5 +40,14 @@ export class ManageServersComponent {
       'list-group-item-danger': st == 'critical',
       'list-group-item-warning': st == 'offline',
     };
+  }
+
+  addServer() {
+    this.listServers.push({
+      name: 'NEW SERVER',
+      type: 'small',
+      date_d: new Date(2020, 2, 2),
+      statut: 'stable',
+    });
   }
 }
