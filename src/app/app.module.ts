@@ -21,6 +21,8 @@ import { ShortPipe } from './short.pipe';
 import { FilterPipe } from './filter.pipe';
 import { FirstService } from './services/first.service';
 import { RecruterComponent } from './recruter/recruter.component';
+import { HomeComponent } from './home/home.component';
+import { DMWM_ROUTING } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -42,8 +44,9 @@ import { RecruterComponent } from './recruter/recruter.component';
     ShortPipe,
     FilterPipe,
     RecruterComponent,
+    HomeComponent,
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, DMWM_ROUTING],
   providers: [FirstService],
   bootstrap: [AppComponent],
 })
