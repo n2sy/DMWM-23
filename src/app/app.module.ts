@@ -23,6 +23,8 @@ import { FirstService } from './services/first.service';
 import { RecruterComponent } from './recruter/recruter.component';
 import { HomeComponent } from './home/home.component';
 import { DMWM_ROUTING } from './app.routing';
+import { NavbarComponent } from './navbar/navbar.component';
+import { InfosComponent } from './infos/infos.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { DMWM_ROUTING } from './app.routing';
     FilterPipe,
     RecruterComponent,
     HomeComponent,
+    NavbarComponent,
+    InfosComponent,
   ],
   imports: [BrowserModule, FormsModule, DMWM_ROUTING],
   providers: [FirstService],
