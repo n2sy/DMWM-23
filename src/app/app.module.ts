@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { FirstComponent } from './first/first.component';
-import { CardComponent } from './card/card.component';
 import { ChildComponent } from './child/child.component';
 import { CvComponent } from './cv/cv.component';
 import { ListeComponent } from './liste/liste.component';
@@ -25,12 +24,15 @@ import { HomeComponent } from './home/home.component';
 import { DMWM_ROUTING } from './app.routing';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InfosComponent } from './infos/infos.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponent,
-    CardComponent,
     ChildComponent,
     CvComponent,
     ListeComponent,
@@ -49,8 +51,11 @@ import { InfosComponent } from './infos/infos.component';
     HomeComponent,
     NavbarComponent,
     InfosComponent,
+    AddComponent,
+    EditComponent,
+    NotFoundComponent,
   ],
-  imports: [BrowserModule, FormsModule, DMWM_ROUTING],
+  imports: [BrowserModule, FormsModule, DMWM_ROUTING, HttpClientModule],
   providers: [FirstService],
   bootstrap: [AppComponent],
 })

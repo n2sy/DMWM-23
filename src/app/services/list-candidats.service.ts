@@ -12,6 +12,10 @@ export class ListCandidatsService {
   ];
   constructor() {}
 
+  getCandidatById(id) {
+    return this.tab.find((element) => element._id == id);
+  }
+
   getAllCandidats() {
     return this.tab;
   }

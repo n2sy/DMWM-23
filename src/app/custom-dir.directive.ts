@@ -4,8 +4,8 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
   selector: '[appCustomDir]',
 })
 export class CustomDirDirective {
-  @HostBinding('style.backgroundColor') bgColor = 'pink';
-  @HostBinding('style.color') color = 'green';
+  @HostBinding('style.backgroundColor') bgColor = 'white';
+  @HostBinding('style.color') color = 'black';
 
   constructor() {}
 
@@ -15,7 +15,7 @@ export class CustomDirDirective {
   }
 
   @HostListener('mouseleave') mouseleave() {
-    this.bgColor = 'pink';
-    this.color = 'green';
+    this.bgColor = 'white';
+    this.color = 'black';
   }
 }
