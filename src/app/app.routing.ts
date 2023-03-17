@@ -30,6 +30,10 @@ const myRoutes: Routes = [
   // },
   { path: 'ms-word', component: MsWordComponent },
   { path: 'servers', component: ManageServersComponent },
+  {
+    path: 'manage-serv',
+    loadChildren: () => import('./sub/sub.module').then((m) => m.SubModule),
+  },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: 'not-found' },
 ];

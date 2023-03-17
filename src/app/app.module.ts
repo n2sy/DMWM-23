@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SubModule } from './sub/sub.module';
 
 @NgModule({
   declarations: [
