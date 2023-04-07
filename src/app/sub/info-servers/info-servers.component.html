@@ -1,1 +1,13 @@
-<p>info-servers works!</p>
+<div class="container">
+    <label for="">Nom du Serveur</label>
+    <input [value]="oneServer.nom" type="text" class="form-control">
+
+    <label for="">Statut du serveur</label>
+    <select [value]="oneServer.statut" name="" id="" class="form-control">
+        <option value="offline">Offline</option>
+        <option value="online">Online</option>
+    </select>
+
+    <br>
+    <button routerLink="edit" [disabled]="disableBtn" class="btn btn-info">Editer</button>
+</div>

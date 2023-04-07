@@ -7,6 +7,7 @@ import { InfosComponent } from './infos/infos.component';
 import { ManageServersComponent } from './manage-servers/manage-servers.component';
 import { MsWordComponent } from './ms-word/ms-word.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './login/login.component';
 
 const myRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,6 +30,7 @@ const myRoutes: Routes = [
   //   ],
   // },
   { path: 'ms-word', component: MsWordComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'servers', component: ManageServersComponent },
   {
     path: 'manage-serv',

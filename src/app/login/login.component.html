@@ -1,0 +1,35 @@
+<form #f="ngForm">
+    <label>Login</label>
+    <input #loginInput="ngModel" ngModel type="text" required email class="form-control" name="login">
+    <div *ngIf="loginInput.invalid && loginInput.dirty" class="alert alert-danger">Veuillez saisir une adresse mail
+        valide
+    </div>
+    <label for="pwd">Mot de passe</label>
+    <input ngModel name="password" type="text" class="form-control" id="pwd">
+
+    <label for="">Section</label>
+    <select [ngModel]="defaultSection" name="filiere" class="form-control">
+        <option value="gl">Génie Logiciel</option>
+        <option value="dmwm">Web et Mobile</option>
+        <option value="dsen">Data Science</option>
+    </select>
+
+    <label for="">Commentaire</label>
+    <textarea class="form-control" [(ngModel)]="myComment" name="commentaire" cols="5" rows="4"></textarea>
+
+    {{ myComment }}
+    <br>
+
+    <input #exp="ngModel" ngModel name="exemple" minlength="5" required pattern="nidhal" type="text"
+        class="form-control">
+    <div *ngIf="exp.invalid" class="alert alert-danger">
+        <p *ngIf="exp.errors['required']">Ce champ est obligatoire</p>
+        <p *ngIf="exp.errors['minlength']">Le nbre minimm de caractères est 5</p>
+        <p *ngIf="exp.errors['pattern']">Le pattern est "nidhal"</p>
+    </div>
+    <button type="submit" (click)="onSubmit(f)" class="btn btn-primary">Se Connecter</button>
+
+    <pre>
+        {{ f.value | json }}
+    </pre>
+</form>
