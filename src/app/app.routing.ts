@@ -8,27 +8,28 @@ import { ManageServersComponent } from './manage-servers/manage-servers.componen
 import { MsWordComponent } from './ms-word/ms-word.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
+import { ReactFormComponent } from './react-form/react-form.component';
 
 const myRoutes: Routes = [
   { path: '', component: HomeComponent },
-  {
-    path: 'cv',
-    component: CvComponent,
-    children: [
-      { path: 'add', component: AddComponent },
-      { path: ':myid', component: InfosComponent },
-      { path: ':myid/edit', component: EditComponent },
-    ],
-  },
   // {
   //   path: 'cv',
+  //   component: CvComponent,
   //   children: [
-  //     { path: '', component: CvComponent },
   //     { path: 'add', component: AddComponent },
   //     { path: ':myid', component: InfosComponent },
   //     { path: ':myid/edit', component: EditComponent },
   //   ],
   // },
+  {
+    path: 'cv',
+    children: [
+      { path: '', component: CvComponent },
+      { path: 'add', component: AddComponent },
+      { path: ':myid', component: InfosComponent },
+      { path: ':myid/edit', component: EditComponent },
+    ],
+  },
   { path: 'ms-word', component: MsWordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'servers', component: ManageServersComponent },

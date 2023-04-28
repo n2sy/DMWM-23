@@ -6,7 +6,6 @@ import { ListCandidatsService } from '../services/list-candidats.service';
   selector: 'app-liste',
   templateUrl: './liste.component.html',
   styleUrls: ['./liste.component.css'],
-  providers: [ListCandidatsService],
 })
 export class ListeComponent {
   // @Input() tab: Candidat[] = [];
@@ -15,7 +14,14 @@ export class ListeComponent {
 
   constructor(private candSer: ListCandidatsService) {}
   ngOnInit() {
-    this.tab = this.candSer.getAllCandidats();
+    this.candSer.getAllCandidatsAPI().subscribe({
+      next: (response: Candidat[]) => {
+        this.tab = response;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   showAll() {

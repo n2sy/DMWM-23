@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,7 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(private router: Router) {}
+  listEtudiants;
+  constructor(private router: Router, private http: HttpClient) {}
+
+  ngOnInit() {
+    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe({
+      next: (response) => {
+        console.log(response);
+        this.listEtudiants = response;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        console.log('Au revoir !');
+      },
+    });
+  }
 
   goToServers() {
     this.router.navigateByUrl('/servers');

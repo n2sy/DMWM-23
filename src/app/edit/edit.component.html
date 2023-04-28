@@ -1,1 +1,31 @@
-<p>edit works!</p>
+<div class="container alert alert-info col-md-8">
+    <form #f="ngForm" class="well form-horizontal" (ngSubmit)="onSubmit()">
+        <div class="profile-userpic">
+            <img src="../../assets/{{candToUpdate.avatar}}" class="img-responsive" alt="">
+        </div>
+        <fieldset>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Prénom</label>
+                <input [(ngModel)]="candToUpdate.prenom" name="prenom" class="form-control" required="true" type="text">
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Nom</label>
+                <input [(ngModel)]="candToUpdate.nom" name="nom" class="form-control" required="true" type="text">
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Age</label>
+                <input [(ngModel)]="candToUpdate.age" name="age" class="form-control" required="true" type="number">
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Profession</label>
+                <input [(ngModel)]="candToUpdate.profession" name="profession" class="form-control" type="text">
+            </div>
+
+        </fieldset>
+        <button type="submit" class="btn-success">Valider</button>
+    </form>
+</div>
