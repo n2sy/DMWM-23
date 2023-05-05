@@ -32,6 +32,7 @@ import { ExpObsComponent } from './exp-obs/exp-obs.component';
 import { LoginComponent } from './login/login.component';
 import { ReactFormComponent } from './react-form/react-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { addTokenProvider } from './add-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [FirstService],
+  providers: [FirstService, addTokenProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

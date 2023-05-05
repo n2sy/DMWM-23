@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Candidat } from '../models/candidat';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,8 +15,15 @@ export class ListCandidatsService {
   ];
   constructor(private http: HttpClient) {}
 
+  uploadAvatar(f) {
+    return this.http.post('http://localhost:3000/images/upload', f);
+  }
+
   getCandidatById(id) {
     return this.tab.find((element) => element._id == id);
+  }
+  getCandidatByIdAPI(id): Observable<Candidat> {
+    return this.http.get<Candidat>(`${this.link}/${id}`);
   }
 
   getAllCandidats() {
@@ -40,11 +47,19 @@ export class ListCandidatsService {
     this.tab[i] = uCand;
   }
 
+  updateCandidatAPI(uCand) {
+    return this.http.put(`${this.link}/${uCand._id}`, uCand);
+  }
+
   deleteCandidat(cand) {
     let i = this.tab.indexOf(cand);
     this.tab.splice(i, 1);
 
     // Autre manière de supprimer
     //this.tab = this.tab.filter((element) => element._id != cand._id)
+  }
+
+  deleteCandidatAPI(cand) {
+    return this.http.delete(`${this.link}/${cand._id}`);
   }
 }

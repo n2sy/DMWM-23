@@ -1,12 +1,13 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <div *ngIf="errorLogin" class="alert alert-danger">Login et/ou Mot de passe invalides</div>
     <label>Login</label>
-    <input #loginInput="ngModel" ngModel type="text" required email class="form-control" name="login">
+    <input #loginInput="ngModel" ngModel type="text" required email class="form-control" name="email">
     <div *ngIf="loginInput.invalid && loginInput.dirty" class="alert alert-danger">Veuillez saisir une adresse mail
         valide
     </div>
     <label for="pwd">Mot de passe</label>
     <input ngModel name="password" type="text" class="form-control" id="pwd">
-
+    <!-- 
     <label for="">Section</label>
     <select [ngModel]="defaultSection" name="filiere" class="form-control">
         <option value="gl">Génie Logiciel</option>
@@ -29,14 +30,25 @@
             <p *ngIf="exp.errors['pattern']">Le pattern est "nidhal"</p>
         </div>
 
-    </div>
+    </div> -->
 
-    <button type="submit" class="btn btn-primary">Se Connecter</button>
-    <button (click)="generatePwd(f)" class="btn btn-warning">Generate Pwd</button>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+
+            <button *ngIf="!showSignUp" type="submit" class="espace btn btn-primary">Se Connecter</button>
+            <button *ngIf="showSignUp" type="submit" class="espace btn btn-info">S'inscrire</button>
+            <button *ngIf="showSignUp" (click)="switch()" type="submit" class="espace  btn btn-warning">Switch to
+                Login</button>
+            <button *ngIf="!showSignUp" (click)="switch()" type="submit" class="espace  btn btn-danger">Switch to
+                Register</button>
+        </div>
+
+    </div>
+    <!-- <button (click)="generatePwd(f)" class="btn btn-warning">Generate Pwd</button>
     <button (click)="generatePwdII(f)" class="btn btn-info">Generate Pwd II</button>
     <button (click)="resetForm(f)" class="btn btn-danger">Reset</button>
 
     <pre>
         {{ f.value | json }}
-    </pre>
+    </pre> -->
 </form>

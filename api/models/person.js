@@ -21,7 +21,8 @@ const personSchema = new Schema({
     },
     avatar: {
         type: String,
-        require: false
+        // data: Buffer,
+        // contentType: String
     },
 });
 

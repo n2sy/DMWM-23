@@ -9,12 +9,19 @@ import { Router } from '@angular/router';
 })
 export class AddComponent {
   constructor(private candSer: ListCandidatsService, private router: Router) {}
-  onSubmit(newCand) {
-    // this.candSer.addCandidat(newCand);
-    this.candSer.addCandidatAPI(newCand).subscribe({
+  onSubmit(newCand, e) {
+    console.log(e.target[4].files[0]);
+    const formData = new FormData();
+    formData.set('avatar', e.target[4].files[0]);
+    this.candSer.uploadAvatar(formData).subscribe({
       next: (response) => {
-        alert(response['message']);
-        this.router.navigateByUrl('/cv');
+        newCand.avatar = response['fileName'];
+        this.candSer.addCandidatAPI(newCand).subscribe({
+          next: (response) => {
+            alert(response['message']);
+            this.router.navigateByUrl('/cv');
+          },
+        });
       },
     });
   }

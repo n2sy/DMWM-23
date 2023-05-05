@@ -36,26 +36,32 @@ exports.login = (req, res, next) => {
             if (!u) {
                 const error = new Error("A user with this mail could not be found");
                 error.statusCode = 401;
-                throw error;
-            }
-            loadedUser = u;
-            return bcrypt.compare(password, loadedUser.password)
-        })
-        .then(isEqual => {
-            if (!isEqual) {
-                const error = new Error("Wrong Password");
-                error.statusCode = 401;
-                throw error;
-            }
-            const token = jwt.sign({
-                email: loadedUser.email,
-                userId: loadedUser._id.toString()
-            }, 'supersecretcode', { expiresIn: '12h' });
-            res.status(200).json({
-                message: 'User Logged',
-                token: token
-            })
+                next(error);
 
+            }
+            else {
+                loadedUser = u;
+                bcrypt.compare(password, loadedUser.password).then(isEqual => {
+                    if (!isEqual) {
+                        const error = new Error("Wrong Password");
+                        error.statusCode = 401;
+                        throw error;
+                    }
+                    const token = jwt.sign({
+                        email: loadedUser.email,
+                        userId: loadedUser._id.toString()
+                    }, 'supersecretcode', { expiresIn: '12h' });
+                    res.status(200).json({
+                        message: 'User Logged',
+                        token: token
+                    })
+
+                })
+                    .catch(err => {
+                        console.log(err);
+                        next(err);
+                    })
+            }
         })
         .catch(err => {
             console.log(err);

@@ -9,6 +9,9 @@ import { MsWordComponent } from './ms-word/ms-word.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { ReactFormComponent } from './react-form/react-form.component';
+import { WithTokenGuard } from './with-token.guard';
+import { WithoutTokenGuard } from './without-token.guard';
+import { LoopGuard } from './loop.guard';
 
 const myRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,13 +28,22 @@ const myRoutes: Routes = [
     path: 'cv',
     children: [
       { path: '', component: CvComponent },
-      { path: 'add', component: AddComponent },
+      { path: 'add', component: AddComponent, canActivate: [WithTokenGuard] },
       { path: ':myid', component: InfosComponent },
-      { path: ':myid/edit', component: EditComponent },
+      {
+        path: ':myid/edit',
+        component: EditComponent,
+        canActivate: [WithTokenGuard],
+      },
     ],
   },
   { path: 'ms-word', component: MsWordComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [WithoutTokenGuard],
+    canDeactivate: [LoopGuard],
+  },
   { path: 'servers', component: ManageServersComponent },
   {
     path: 'manage-serv',

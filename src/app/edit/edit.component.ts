@@ -16,12 +16,26 @@ export class EditComponent {
   ) {}
 
   ngOnInit() {
-    this.candToUpdate = this.candSer.getCandidatById(
-      this.actRoute.snapshot.paramMap.get('myid')
-    );
+    this.candSer
+      .getCandidatByIdAPI(this.actRoute.snapshot.paramMap.get('myid'))
+      .subscribe({
+        next: (response) => {
+          this.candToUpdate = response;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
   }
   onSubmit() {
-    this.candSer.updateCandidat(this.candToUpdate);
-    this.router.navigateByUrl('/cv');
+    this.candSer.updateCandidatAPI(this.candToUpdate).subscribe({
+      next: (response) => {
+        alert(response['message']);
+        this.router.navigateByUrl('/cv');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

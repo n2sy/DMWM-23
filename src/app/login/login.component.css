@@ -5,3 +5,7 @@
 .ng-valid.ng-dirty {
   border-color: green;
 }
+
+.espace {
+  margin: 10px;
+}

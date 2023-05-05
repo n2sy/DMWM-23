@@ -1,27 +1,30 @@
 const Personne = require('../models/person');
 const _ = require('lodash');
+const fs = require("fs");
+const path = require("path");
+const { log } = require('console');
 
 
 exports.getAllPersons = async (req, res, next) => {
 
-    Personne.find().then(result => {
-        res.status(200).json(result);
-    })
-        .catch(err => {
-            console.log(err);
-        })
+    // Personne.find().then(result => {
+    //     res.status(200).json(result);
+    // })
+    //     .catch(err => {
+    //         console.log(err);
+    //     })
+
+    const filter = req.query.filter
 
     try {
-        const result = await Personne.find();
+        const result = await Personne.find({
+            "nom": new RegExp(filter, 'i')
+        });
         res.status(200).json(result);
     }
     catch (err) {
-        console.log(err);
         next(err);
-
     }
-
-
 
 
 }
@@ -33,7 +36,7 @@ exports.getPerson = (req, res, next) => {
             if (!p) {
                 const error = new Error('Could not find this person');
                 error.statusCode = 404;
-                throw error;
+                next(error);
             }
             res.status(200).json(p)
         })
@@ -45,22 +48,14 @@ exports.getPerson = (req, res, next) => {
 
 }
 exports.createPerson = (req, res, next) => {
-    // const prenom = req.body.prenom;
-    // const nom = req.body.nom;
-    // const age = req.body.age;
-    // const profession = req.body.profession;
-    // const avatar = req.body.avatar;
 
-    // const newPerson = new Personne({
-    //     prenom: prenom,
-    //     nom: nom,
-    //     age: age,
-    //     profession: profession,
-    //     avatar: avatar
-    // });
+    let newP = _.pick(req.body, ['prenom', 'nom', 'age', 'profession']);
 
+    if (req.body.avatar) {
+        const urlAvatar = req.protocol + "://" + req.get("host");
+        newP.avatar = urlAvatar + "/avatars/" + req.body.avatar;
+    }
 
-    let newP = _.pick(req.body, ['prenom', 'nom', 'age', 'profession', 'avatar']);
     const newPerson = new Personne(newP);
 
     newPerson.save()
@@ -80,25 +75,14 @@ exports.createPerson = (req, res, next) => {
 }
 exports.updatePerson = (req, res, next) => {
     const pId = req.params['id'];
-    // const prenom = req.body.prenom;
-    // const nom = req.body.nom;
-    // const age = req.body.age;
-    // const profession = req.body.profession;
-    // const avatar = req.body.avatar;
-
 
     Personne.findById(pId)
         .then(p => {
             if (!p) {
                 const error = new Error('Could not find this person');
                 error.statusCode = 404;
-                throw error;
+                next(error);
             }
-            // p.prenom = prenom;
-            // p.nom = nom;
-            // p.age = age;
-            // p.profession = profession;
-            // p.avatar = avatar;
 
             p = _.merge(p, req.body)
 
@@ -111,8 +95,7 @@ exports.updatePerson = (req, res, next) => {
             });
         })
         .catch(err => {
-            console.log(err);
-            next(err)
+            next(err);
         })
 
 }
@@ -121,11 +104,9 @@ exports.deletePerson = (req, res, next) => {
     const pId = req.params['id'];
     Personne.findByIdAndRemove(pId)
         .then(p => {
-
             if (!p) {
                 const error = new Error('Could not find this person');
                 error.statusCode = 404;
-
                 throw error;
             }
             res.status(200).json({
@@ -134,7 +115,6 @@ exports.deletePerson = (req, res, next) => {
             })
         })
         .catch(err => {
-            console.log(err);
             next(err);
         })
 }

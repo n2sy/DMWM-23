@@ -11,12 +11,12 @@ router.get('/candidats', cvCtrl.getAllPersons);
 router.get('/candidats/:id', cvCtrl.getPerson);
 
 //création d'une nouvelle personne
-router.post('/candidats', cvCtrl.createPerson);
+router.post('/candidats', isAuth, cvCtrl.createPerson);
 
 //Update d'une personne
-router.put('/candidats/:id', cvCtrl.updatePerson);
+router.put('/candidats/:id', isAuth, cvCtrl.updatePerson);
 
 //suppression d'une personne
-router.delete('/candidats/:id', cvCtrl.deletePerson);
+router.delete('/candidats/:id', isAuth, cvCtrl.deletePerson);
 
 module.exports = router;

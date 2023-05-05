@@ -20,15 +20,29 @@ export class InfosComponent {
     // this.id = this.activatedRoute.snapshot.paramMap.get('myid');
     this.activatedRoute.paramMap.subscribe({
       next: (p: ParamMap) => {
-        this.selectedCandidat = this.candSer.getCandidatById(p.get('myid'));
+        this.candSer.getCandidatByIdAPI(p.get('myid')).subscribe({
+          next: (response) => {
+            this.selectedCandidat = response;
+          },
+          error: (err) => {
+            console.log(err);
+          },
+        });
       },
     });
   }
 
   onDelete() {
     if (confirm('Etes vous sur de vouloir supprimer ce candidat ?')) {
-      this.candSer.deleteCandidat(this.selectedCandidat);
-      this.router.navigateByUrl('/cv');
+      this.candSer.deleteCandidatAPI(this.selectedCandidat).subscribe({
+        next: (response) => {
+          alert(response['message']);
+          this.router.navigateByUrl('/cv');
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     }
   }
 }
